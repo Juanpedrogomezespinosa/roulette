@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tus colores corporativos directos al motor de Tailwind */
+  --color-primary: #6296ce;
+  --color-secondary: #1b2341;
+}
+
+/* Animaciones y utilidades personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.clip-triangle-puntero {
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
