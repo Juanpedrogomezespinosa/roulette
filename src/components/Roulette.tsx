@@ -335,15 +335,13 @@ export default function Roulette() {
         </div>
       )}
 
-      <div className="z-10 flex flex-col items-center w-full pt-6 md:pt-8 shrink-0 px-4">
-        <div className="bg-white/5 backdrop-blur-md border border-white/10 px-8 py-3 rounded-3xl shadow-xl text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#6296CE] tracking-wider uppercase mb-1">
-            Qualisophy
-          </h1>
-          <p className="text-gray-300 font-medium text-xs md:text-sm uppercase tracking-widest">
-            Gira y descubre tu premio
-          </p>
-        </div>
+      {/* 1. SECCIÓN SUPERIOR (LOGOTIPO PEGADO AL TECHO) */}
+      <div className="z-10 flex flex-col items-center justify-start w-full pt- shrink-0 px-">
+        <img
+          src="/horizontal.png"
+          alt="Qualisophy"
+          className="w-[70vw] max-w-[320px] h-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] brightness-0 invert"
+        />
       </div>
 
       <div className="z-10 flex-1 min-h-0 w-full flex items-center justify-center p-4 md:p-8">
@@ -375,11 +373,14 @@ export default function Roulette() {
                   style={{
                     transform: `translateY(-50%) rotate(${angle - 90}deg)`,
                     width: "48%",
-                    paddingRight: "6%",
+                    paddingRight: "4%", // Margen reducido para ganar espacio
                     paddingLeft: "18%",
                   }}
                 >
                   <span
+                    /* He quitado el 'truncate'. 
+                       'leading-tight' y text-sm hacen que si hay dos líneas no se solapen
+                    */
                     className="block text-right text-white font-medium tracking-wide text-xs sm:text-sm md:text-base lg:text-lg w-full leading-tight"
                     style={{ textShadow: "0px 2px 4px rgba(0,0,0,0.4)" }}
                   >
