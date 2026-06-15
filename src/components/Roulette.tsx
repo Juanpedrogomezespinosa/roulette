@@ -7,6 +7,10 @@ const DEFAULT_PRIZES = [
   "10% Descuento",
   "Tira otra vez",
   "Pegatina",
+  "Regalo sorpresa",
+  "Caramelo",
+  "Tira otra vez",
+  "Pegatina",
 ];
 
 export default function Roulette() {
@@ -391,11 +395,11 @@ export default function Roulette() {
             })}
           </div>
 
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-[16%] h-[16%] bg-[#0A0F1C] rounded-full border-2 md:border-4 border-[#6296CE] shadow-[0_0_20px_rgba(0,0,0,0.8)] flex items-center justify-center overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-[16%] h-[16%] bg-white rounded-full border-2 md:border-4 border-[#6296CE] shadow-[0_0_20px_rgba(0,0,0,0.8)] flex items-center justify-center overflow-hidden">
             <img
               src="/logo.png"
               alt="Qualisophy Logo"
-              className="w-[75%] h-[75%] object-contain object-center"
+              className="w-[100%] h-[100%] object-contain object-center"
             />
           </div>
         </div>
