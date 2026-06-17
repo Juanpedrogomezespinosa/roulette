@@ -5,15 +5,17 @@ import SettingsModal from "./SettingsModal";
 import PrizeModal from "./PrizeModal";
 
 const DEFAULT_PRIZES = [
-  "Regalo sorpresa",
-  "Caramelo",
-  "25% de descuento",
-  "Tira otra vez",
-  "Pegatina",
-  "Regalo sorpresa",
-  "Caramelo",
-  "Tira otra vez",
-  "Pegatina",
+  "10% de descuento",
+  "20% de descuento",
+  "50% de descuento",
+  "10% de descuento",
+  "tira de nuevo",
+  "20% de descuento",
+  "10% de descuento",
+  "20% de descuento",
+  "tira de nuevo",
+  "10% de descuento",
+  "20% de descuento",
 ];
 
 export default function Roulette() {
@@ -26,8 +28,8 @@ export default function Roulette() {
   const [prizesInput, setPrizesInput] = useState<string>(
     DEFAULT_PRIZES.join("\n"),
   );
-  const [confettiTrigger, setConfettiTrigger] = useState<string>("25%");
-  const [confettiInput, setConfettiInput] = useState<string>("25%");
+  const [confettiTrigger, setConfettiTrigger] = useState<string>("50%");
+  const [confettiInput, setConfettiInput] = useState<string>("50%");
 
   const [audioStarted, setAudioStarted] = useState<boolean>(false);
   const [isMusicMuted, setIsMusicMuted] = useState<boolean>(false);
@@ -179,7 +181,27 @@ export default function Roulette() {
       }
     });
 
-    const winnerIndex = Math.floor(Math.random() * prizes.length);
+    // --- INICIO DE LA TRAMPA (RIGGING) AL 5% ---
+    let winnerIndex = Math.floor(Math.random() * prizes.length);
+    let selectedPrize = prizes[winnerIndex];
+
+    // Detectamos si el premio seleccionado contiene "50%"
+    if (selectedPrize.includes("50%")) {
+      const luckyRoll = Math.random();
+
+      // Si el dado es mayor que 0.05 (es decir, el 95% de las veces)
+      if (luckyRoll > 0.05) {
+        // Le quitamos el premio gordo y forzamos buscar uno que NO sea el 50%
+        let newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * prizes.length);
+        } while (prizes[newIndex].includes("50%"));
+
+        winnerIndex = newIndex;
+      }
+    }
+    // --- FIN DE LA TRAMPA ---
+
     const spins = 8;
     const segmentDegree = 360 / prizes.length;
     const angleVariation = (Math.random() - 0.5) * (segmentDegree * 0.6);
@@ -201,6 +223,8 @@ export default function Roulette() {
       const isConfettiWin =
         confettiTrigger.trim() !== "" &&
         wonPrize.toLowerCase().includes(confettiTrigger.toLowerCase());
+
+      // Detectamos si el premio es "tira de nuevo" (o cualquier variante con "tira")
       const isAgainWin = wonPrize.toLowerCase().includes("tira");
 
       if (isConfettiWin) {
